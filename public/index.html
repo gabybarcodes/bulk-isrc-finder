@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bulk ISRC Finder</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-top">
+                <div class="header-title">
+                    <h1>ISRC_LOOKUP</h1>
+                    <span class="slogan">Bulk ISRC Finder</span>
+                </div>
+                <span class="count-badge"><span id="trackCount">0</span> TRACKS</span>
+            </div>
+            <div class="header-controls">
+                <button id="searchBtn" class="btn-control">LOOKUP ISRC</button>
+                <button id="clearBtn" class="btn-control clear">CLEAR OUTPUT</button>
+            </div>
+        </header>
+
+        <!-- Main Content - Two Panel Layout -->
+        <main class="main-content">
+            <!-- Left Panel: Input -->
+            <div class="panel left-panel">
+                <textarea 
+                    id="songsInput" 
+                    class="textarea"
+                    placeholder="Paste songs here&#10;Format: Song Title - Artist Name"
+                    spellcheck="false"
+                ></textarea>
+            </div>
+
+            <!-- Right Panel: Output -->
+            <div class="panel right-panel">
+                <div id="awaitingMessage" class="awaiting-message">
+                    <div class="message-box">
+                        <span>AWAITING INPUT</span>
+                        <span class="divider">────────────────</span>
+                        <span>Paste songs on</span>
+                        <span>the left panel</span>
+                        <span>and hit LOOKUP</span>
+                    </div>
+                </div>
+                
+                <div id="resultsContainer" class="results-container" style="display: none;">
+                    <div class="results-actions">
+                        <button id="exportCsvBtn" class="btn-export">📥 EXPORT CSV</button>
+                    </div>
+                    <div id="resultsTable" class="results-table"></div>
+                    <p id="progressText" class="progress-text"></p>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p style="margin-top: 10px; font-size: 0.85rem; opacity: 0.6;">Powered by <a href="https://www.deezer.com">Deezer API</a></p>
+        </footer>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
