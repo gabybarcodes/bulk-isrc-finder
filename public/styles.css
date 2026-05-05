@@ -107,7 +107,7 @@ body {
 /* Main Content */
 .main-content {
     display: grid;
-    grid-template-columns: 30% 70%;
+    grid-template-columns: 20% 80%;
     flex: 1;
     gap: 0;
     border-top: 1px solid var(--border-color);
