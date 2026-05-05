@@ -117,12 +117,12 @@ function displayResults(results) {
             <tbody>
                 ${results.map((result, index) => `
                     <tr>
-                        <td>${escapeHtml(result.title || 'N/A')}</td>
-                        <td>${escapeHtml(result.artist || 'N/A')}</td>
-                        <td class="isrc-cell">${result.isrc ? escapeHtml(result.isrc) : '—'}</td>
-                        <td>${result.releaseDate ? escapeHtml(result.releaseDate) : '—'}</td>
-                        <td>${result.labels ? escapeHtml(result.labels) : '—'}</td>
-                        <td>${result.distributor ? escapeHtml(result.distributor) : '—'}</td>
+                        <td data-label="Song">${escapeHtml(result.title || 'N/A')}</td>
+                        <td data-label="Artist">${escapeHtml(result.artist || 'N/A')}</td>
+                        <td class="isrc-cell" data-label="ISRC">${result.isrc ? escapeHtml(result.isrc) : '—'}</td>
+                        <td data-label="Release Date">${result.releaseDate ? escapeHtml(result.releaseDate) : '—'}</td>
+                        <td data-label="Label(s)">${result.labels ? escapeHtml(result.labels) : '—'}</td>
+                        <td data-label="Distributor">${result.distributor ? escapeHtml(result.distributor) : '—'}</td>
                         <td>
                             <span class="status-badge ${result.found ? 'status-success' : 'status-error'}">
                                 ${result.found ? '✓' : '✗'}
