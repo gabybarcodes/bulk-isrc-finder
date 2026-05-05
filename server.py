@@ -74,6 +74,9 @@ class APIHandler(SimpleHTTPRequestHandler):
         self.end_headers()
     
     def end_headers(self):
+        # Prevent CDN/browser caching to ensure latest UI assets are served.
+        self.send_header('Cache-Control', 'no-store, must-revalidate')
+        self.send_header('Pragma', 'no-cache')
         self.send_header('Access-Control-Allow-Origin', '*')
         super().end_headers()
     
