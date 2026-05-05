@@ -179,3 +179,4 @@ MIT
 ---
 
 Made with ❤️ for music professionals
+# Label Finder with Soundcharts API
