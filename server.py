@@ -279,8 +279,8 @@ def search_soundcharts(song):
 def run_server():
     os.chdir(PUBLIC_DIR)
     server = HTTPServer(('0.0.0.0', PORT), APIHandler)
-    print(f"🎵 ISRC Lookup running on http://0.0.0.0:{PORT}")
-    print(f"✓ Powered by Deezer API (100+ million tracks)")
+    print(f"🎵 ISRC Lookup with Label Finder running on http://0.0.0.0:{PORT}")
+    print(f"✓ Powered by Deezer API + Soundcharts Label Finder")
     print(f"📡 Accessible from other devices on your network!")
     server.serve_forever()
 
