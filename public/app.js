@@ -102,6 +102,9 @@ function displayResults(results) {
                     <th>SONG</th>
                     <th>ARTIST</th>
                     <th>ISRC</th>
+                    <th>RELEASE DATE</th>
+                    <th>LABEL(S)</th>
+                    <th>DISTRIBUTOR</th>
                     <th>STATUS</th>
                 </tr>
             </thead>
@@ -111,6 +114,9 @@ function displayResults(results) {
                         <td>${escapeHtml(result.title || 'N/A')}</td>
                         <td>${escapeHtml(result.artist || 'N/A')}</td>
                         <td class="isrc-cell">${result.isrc ? escapeHtml(result.isrc) : '—'}</td>
+                        <td>${result.releaseDate ? escapeHtml(result.releaseDate) : '—'}</td>
+                        <td>${result.labels ? escapeHtml(result.labels) : '—'}</td>
+                        <td>${result.distributor ? escapeHtml(result.distributor) : '—'}</td>
                         <td>
                             <span class="status-badge ${result.found ? 'status-success' : 'status-error'}">
                                 ${result.found ? '✓' : '✗'}
@@ -153,11 +159,14 @@ function exportToCSV() {
         return;
     }
 
-    const headers = ['Song', 'Artist', 'ISRC', 'Status'];
+    const headers = ['Song', 'Artist', 'ISRC', 'Release Date', 'Label(s)', 'Distributor', 'Status'];
     const rows = currentResults.map(result => [
         result.title || '',
         result.artist || '',
         result.isrc || '',
+        result.releaseDate || '',
+        result.labels || '',
+        result.distributor || '',
         result.found ? 'Found' : 'Not Found'
     ]);
 

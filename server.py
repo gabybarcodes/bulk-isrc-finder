@@ -8,8 +8,10 @@ from pathlib import Path
 import threading
 
 # Configuration
-API_KEY = os.getenv('SOUNDCHARTS_API_KEY', '')
+API_KEY = os.getenv('SOUNDCHARTS_API_KEY', '7572e7631869825b')
+APP_ID = os.getenv('SOUNDCHARTS_APP_ID', 'GBARROETA-API_72B0C865')
 SOUNDCHARTS_BASE = 'https://api.soundcharts.com'
+CUSTOMER_API_BASE = 'https://customer.api.soundcharts.com'
 DEEZER_BASE = 'https://api.deezer.com'
 PORT = int(os.getenv('PORT', 3000))
 PUBLIC_DIR = Path(__file__).parent / 'public'
@@ -120,13 +122,39 @@ def search_deezer(song):
         
         # Return first matching result
         track = results[0]
+        
+        # Try to get additional metadata from Soundcharts if available
+        labels = None
+        distributor = None
+        soundcharts_release_date = None
+        
+        if API_KEY and APP_ID:
+            try:
+                isrc = track.get('isrc')
+                if isrc:
+                    labels, distributor, soundcharts_release_date = fetch_soundcharts_metadata(isrc)
+            except Exception as e:
+                pass  # Silently fail if Soundcharts lookup doesn't work
+        
+        # Get release date from album if available
+        release_date = soundcharts_release_date
+        if not release_date:
+            # Try to get from album
+            album = track.get('album', {})
+            if isinstance(album, dict):
+                release_date = album.get('release_date')
+            if not release_date:
+                release_date = track.get('release_date')
+        
         return {
             'input': f"{song['title']} - {song['artist']}",
             'found': True,
             'title': track.get('title', song['title']),
             'artist': track.get('artist', {}).get('name', song['artist']),
             'isrc': track.get('isrc'),
-            'releaseDate': track.get('release_date'),
+            'releaseDate': release_date,
+            'labels': labels,
+            'distributor': distributor,
             'api': 'deezer',
             'preview': track.get('preview_url')
         }
@@ -137,6 +165,56 @@ def search_deezer(song):
             'found': False,
             'error': f'Deezer error: {str(e)}'
         }
+
+def fetch_soundcharts_metadata(isrc):
+    """Fetch metadata from Soundcharts API by ISRC - returns (labels, distributor, releaseDate)"""
+    if not API_KEY or not APP_ID:
+        return None, None, None
+    
+    try:
+        headers = {
+            'x-app-id': APP_ID,
+            'x-api-key': API_KEY,
+            'Content-Type': 'application/json'
+        }
+        
+        # Get song by ISRC
+        isrc_url = f"{CUSTOMER_API_BASE}/api/v2.25/song/by-isrc/{isrc}"
+        response = requests.get(isrc_url, headers=headers, timeout=10)
+        
+        if response.status_code != 200:
+            return None, None, None
+        
+        song_data = response.json().get('object')
+        if not song_data:
+            return None, None, None
+        
+        # Extract labels
+        labels = None
+        labels_list = song_data.get('labels', [])
+        if labels_list:
+            labels = ', '.join([label.get('name', '') for label in labels_list if label.get('name')])
+            if not labels:
+                labels = None
+        
+        # Extract distributor
+        distributor = song_data.get('distributor')
+        
+        # Extract and format release date
+        release_date = None
+        release_date_str = song_data.get('releaseDate')
+        if release_date_str:
+            try:
+                # Parse ISO format and return just the date
+                release_date = release_date_str.split('T')[0]
+            except:
+                release_date = release_date_str
+        
+        return labels, distributor, release_date
+    
+    except Exception as e:
+        # Silently fail
+        return None, None, None
 
 def search_soundcharts(song):
     """Search using Soundcharts API (requires API key)"""
