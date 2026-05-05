@@ -1,3 +1,9 @@
+// ========================================
+// BULK ISRC FINDER - Label Finder Edition
+// Version: 7-columns (SONG, ARTIST, ISRC, RELEASE DATE, LABEL(S), DISTRIBUTOR, STATUS)
+// Last Updated: 2026-05-05 19:00 UTC
+// ========================================
+
 // DOM Elements
 const songsInput = document.getElementById('songsInput');
 const searchBtn = document.getElementById('searchBtn');
