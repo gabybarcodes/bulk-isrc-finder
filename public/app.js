@@ -52,7 +52,7 @@ async function performBulkSearch() {
     progressText.textContent = 'Processing...';
     
     searchBtn.disabled = true;
-    searchBtn.textContent = 'SEARCHING...';
+    searchBtn.textContent = 'Searching...';
 
     try {
         const response = await fetch('/api/bulk-search', {
@@ -76,7 +76,7 @@ async function performBulkSearch() {
         console.error('Search error:', error);
     } finally {
         searchBtn.disabled = false;
-        searchBtn.textContent = 'LOOKUP ISRC';
+        searchBtn.textContent = 'Search';
     }
 }
 
@@ -144,7 +144,7 @@ function displayResults(results) {
 
 // Update progress text
 function updateProgress(found, total) {
-    progressText.textContent = `Found: ${found}/${total} ISRC codes (${Math.round((found / total) * 100)}%)`;
+    progressText.textContent = `Found: ${found}/${total} (${Math.round((found / total) * 100)}%)`;
 }
 
 // Clear input
