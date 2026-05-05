@@ -353,6 +353,11 @@ body {
     letter-spacing: 0.5px;
 }
 
+.distributor-cell {
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
 /* Footer */
 .footer {
     text-align: center;

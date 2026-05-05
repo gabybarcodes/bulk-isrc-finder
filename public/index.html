@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bulk ISRC Finder</title>
+    <title>ISRC Sammelsuche</title>
     <link rel="stylesheet" href="styles.css?v=20260506">
 </head>
 <body>
@@ -12,14 +12,14 @@
         <header class="header">
             <div class="header-top">
                 <div class="header-title">
-                    <h1>ISRC_LOOKUP</h1>
-                    <span class="slogan">Bulk ISRC, Label and Distributor Finder</span>
-                    <span class="track-total">Total tracks: <span id="trackCount">0</span></span>
+                    <h1>ISRC_SUCHE</h1>
+                    <span class="slogan">SRC, Plattenlabel & Vertrieb Massen-Suche.</span>
+                    <span class="track-total">Anzahl Tracks: <span id="trackCount">0</span></span>
                 </div>
             </div>
             <div class="header-controls">
-                <button id="searchBtn" class="btn-control primary">Search</button>
-                <button id="clearBtn" class="btn-control clear">Reset</button>
+                <button id="searchBtn" class="btn-control primary">Suchen</button>
+                <button id="clearBtn" class="btn-control clear">Zurucksetzen</button>
             </div>
         </header>
 
@@ -30,7 +30,7 @@
                 <textarea 
                     id="songsInput" 
                     class="textarea"
-                    placeholder="Paste songs here&#10;Format: Song Title - Artist Name"
+                    placeholder="Songs hier einfugen&#10;Format: Songtitel - Künstlername"
                     spellcheck="false"
                 ></textarea>
             </div>
@@ -39,15 +39,15 @@
             <div class="panel right-panel">
                 <div id="awaitingMessage" class="awaiting-message">
                     <div class="message-box">
-                        <span>Paste songs on</span>
-                        <span>the left panel</span>
-                        <span>and hit Search</span>
+                        <span>Links Songs einfugen</span>
+                        <span>und auf Suchen klicken</span>
+                        <span>um zu starten</span>
                     </div>
                 </div>
                 
                 <div id="resultsContainer" class="results-container" style="display: none;">
                     <div class="results-actions">
-                        <button id="exportCsvBtn" class="btn-export">📥 EXPORT CSV</button>
+                        <button id="exportCsvBtn" class="btn-export">📥 CSV EXPORTIEREN</button>
                     </div>
                     <div id="resultsTable" class="results-table"></div>
                     <p id="progressText" class="progress-text"></p>
@@ -57,7 +57,7 @@
 
         <!-- Footer -->
         <footer class="footer">
-            <p style="margin-top: 10px; font-size: 0.85rem; opacity: 0.6;">Powered by <a href="https://www.deezer.com">Deezer API</a> · Created by Gabi 🤍🎶</p>
+            <p style="margin-top: 10px; font-size: 0.85rem; opacity: 0.6;">Powered by <a href="https://www.deezer.com">Deezer API</a> · Erstellt von Gabi 🤍🎶</p>
         </footer>
     </div>
 
