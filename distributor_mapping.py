@@ -95,6 +95,7 @@ LABEL_TO_MAJOR_GROUP = {
     "insanity records": "Sony Music Entertainment",
     "chess club": "Sony Music Entertainment",
     "nettwerk": "Sony Music Entertainment",
+    "above board": "Sony Music Entertainment",
     # Universal Music Group
     "republic records": "Universal Music Group",
     "interscope": "Universal Music Group",
