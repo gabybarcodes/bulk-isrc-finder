@@ -179,7 +179,13 @@ def fetch_spotify_label(isrc):
         if not label_name:
             return None, None, release_date
 
-        major_group = get_major_group(label_name)
+        # Also extract copyright text — it often names the parent major group
+        # e.g. "7CULT/B1 Recordings GmbH, a Sony Music Entertainment Company"
+        copyright_text = ' '.join(
+            c.get('text', '') for c in album_data.get('copyrights', [])
+        )
+
+        major_group = get_major_group(label_name, copyright_text)
         return label_name, major_group, release_date
 
     except Exception:

@@ -95,17 +95,15 @@ LABEL_TO_MAJOR_GROUP = {
 }
 
 
-def get_major_group(label_name):
+def get_major_group(label_name, copyright_text=''):
     """
-    Map a Spotify album label name to its parent major music group.
-    Uses keyword matching (case-insensitive substring).
-    Returns 'Independent' if no match found.
+    Map a Spotify label name (+ optional copyright text) to its parent major group.
+    Checks label name first, then falls back to copyright text.
+    Returns 'Independent' if no match found in either.
     """
-    if not label_name:
-        return None
-    lower = label_name.lower()
+    combined = f"{label_name or ''} {copyright_text or ''}".lower()
     for keyword, group in LABEL_TO_MAJOR_GROUP.items():
-        if keyword in lower:
+        if keyword in combined:
             return group
     return "Independent"
 
