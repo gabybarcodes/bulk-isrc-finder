@@ -127,7 +127,6 @@ function appendResultRow(result) {
         <td class="distributor-cell" data-label="Distributor">${result.distributor ? escapeHtml(result.distributor) : '—'}</td>
         <td><span class="status-badge ${result.found ? 'status-success' : 'status-error'}">${result.found ? '✓' : '✗'}</span></td>`;
     tbody.appendChild(tr);
-    tr.scrollIntoView({ block: 'nearest' });
 }
 
 // Parse songs from input
