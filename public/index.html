@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ISRC Sammelsuche</title>
-    <link rel="stylesheet" href="styles.css?v=20260506">
+    <link rel="stylesheet" href="styles.css?v=20260519">
 </head>
 <body>
     <div class="container">
@@ -49,18 +49,23 @@
                     <div class="results-actions">
                         <button id="exportCsvBtn" class="btn-export">📥 CSV EXPORTIEREN</button>
                     </div>
-                    <div id="resultsTable" class="results-table"></div>
-                    <p id="progressText" class="progress-text"></p>
+                    <div id="progressBarContainer" class="progress-bar-container" style="display: none;">
+                        <div class="progress-bar-track">
+                            <div id="progressBarFill" class="progress-bar-fill"></div>
+                        </div>
+                        <p id="progressText" class="progress-text"></p>
+                    </div>
+                <div id="resultsTable" class="results-table"></div>
                 </div>
             </div>
         </main>
 
         <!-- Footer -->
         <footer class="footer">
-            <p style="margin-top: 10px; font-size: 0.85rem; opacity: 0.6;">Powered by <a href="https://www.deezer.com">Deezer API</a> · Erstellt von Gabi 🤍🎶</p>
+            <p style="margin-top: 10px; font-size: 0.85rem; opacity: 0.6;">Powered by <a href="https://www.deezer.com">Deezer API</a> + <a href="https://developer.spotify.com">Spotify API</a> · Erstellt von Gabi 🤍🎶</p>
         </footer>
     </div>
 
-    <script src="app.js?v=20260505"></script>
+    <script src="app.js?v=20260519"></script>
 </body>
 </html>
